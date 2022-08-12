@@ -36,26 +36,29 @@
 
            FIGURES_RUS.forEach(element => { 
             for (let i=0; i < playerAnswer.length; i++){
-               if (element[i] !== playerAnswer[i]) return 
+               if (element[i] !== playerAnswer[i]) return
              } return playerMath = FIGURES_RUS.indexOf(element) + 1;
             });
-
+            if (!playerMath || playerAnswer.length == 0 )  {
+               return start();
+            }
            let compAnswer;
            const compMath = getRandomIntInclusive(1,3);
+
            if (compMath == playerMath) {
               alert(`Компьютер ${FIGURES_COMP[compMath-1]}  Игрок ${FIGURES_RUS[playerMath-1]}   Ничья`);     
               console.log('Компьютер', FIGURES_COMP[compMath-1])
               console.log('Игрок', FIGURES_RUS[playerMath-1])
               console.log('Ничья')
            }
-           if (compMath > playerMath & compMath - playerMath !=2  || compMath == 1 & playerMath == 3) {
+           else if (playerMath==1 & compMath==2 ||  playerMath==2 & compMath == 3  || playerMath == 3 & compMath == 1) {
               alert(`Компьютер ${FIGURES_COMP[compMath-1]}   Игрок ${FIGURES_RUS[playerMath-1]}   Игрок выиграл`);      
               console.log('Компьютер', FIGURES_COMP[compMath-1])
               console.log('Игрок', FIGURES_RUS[playerMath-1])
               console.log('Игрок выиграл')
               result.player++
            }
-           if (compMath < playerMath & compMath - playerMath !=2  || compMath == 3 & playerMath == 1) {
+           else {
               alert(`Компьютер ${FIGURES_COMP[compMath-1]}   Игрок ${FIGURES_RUS[playerMath-1]}     Компьютер выиграл`);
               console.log('Компьютер', FIGURES_COMP[compMath-1])
               console.log('Игрок', FIGURES_RUS[playerMath-1])
@@ -73,10 +76,8 @@
             alert(`Результат: Компьютер ${result.computer}   Игрок ${result.player}`);
             console.log(result.player, result.computer);
             return
-           }
-            
-        };
-        
+           }   
+        };   
       };
       window.RPS = game;
 
